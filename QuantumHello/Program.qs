@@ -8,3 +8,4 @@ namespace QuantumHello {
         Message("Hello quantum world!");
     }
 }
+ 
