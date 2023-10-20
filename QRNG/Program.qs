@@ -16,7 +16,7 @@ namespace QRNG {
         return M(q);
     }
 
-    operation RandomNumberInRange(max: Int): Int{
+    operation RandomNumberInRange(min: Int, max: Int): Int{
         mutable output = 0;
         repeat{
             mutable bits = [];
@@ -25,15 +25,16 @@ namespace QRNG {
             }
             set output = ResultArrayAsInt(bits);
         }
-        until(output <= max);
+        until(output <= max and output >= min);
 
         return output;
     }
 
     @EntryPoint()
-    operation SampleRNG():Int{
+    operation SampleRNG(): Int{
         let max = 50;
-        Message($"RNG of num between 0 and {max}");
-        return RandomNumberInRange(max);
+        let min = 11;
+        Message($"RNG of num between {min} and {max}");
+        return RandomNumberInRange(min, max);
     }
 }
